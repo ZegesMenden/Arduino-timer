@@ -74,7 +74,9 @@ class timer
             this->next_run = first_run; 
         };
 
-        void check_timer(uint32_t time) {
+        inline void check_timer(uint32_t time) __attribute__((always_inline)); 
+        inline void check_timer(uint32_t time)
+        {
             if (time >= next_run) {
                 callback(time, time - last_run);
                 last_run = micros();
